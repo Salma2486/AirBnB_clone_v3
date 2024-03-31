@@ -98,4 +98,3 @@ class DBStorage:
         """
 
         return len(self.all(cls))
-
