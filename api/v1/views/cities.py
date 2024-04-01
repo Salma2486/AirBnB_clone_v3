@@ -8,7 +8,7 @@ from models import storage
 from models.city import City
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=['GET'])
 def get_cities(state_id):
     """get"""
     s = storage.all(State)
@@ -37,7 +37,7 @@ def delete_city(city_id):
     return jsonify({}), 200
 
 
-@app_views.route('states/<state_id>/cities', methods=['POST'], strict_slashes=False)
+@app_views.route('states/<state_id>/cities', methods=['POST'])
 def create_city(state_id):
     """h sortiulsehtlui nkh"""
     data_dict = request.get_json(silent=True)
