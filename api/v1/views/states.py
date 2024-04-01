@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module handles the HTTP methods for states"""
+"""Tgfhghggfx hfgh dgf"""
 
 from api.v1.views import app_views
 from flask import jsonify, abort, request
@@ -9,14 +9,14 @@ from models import storage
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_states():
-    """Returns a list of all states in the database"""
-    states = storage.all(State)
-    return jsonify([state.to_dict() for state in states.values()])
+    """get"""
+    s = storage.all(State)
+    return jsonify([state.to_dict() for state in s.values()])
 
 
 @app_views.route('/states/<state_id>', methods=['GET'])
 def get_state(state_id):
-    """Get information about a specific state."""
+    """Get"""
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
@@ -25,7 +25,7 @@ def get_state(state_id):
 
 @app_views.route('/states/<state_id>', methods=['DELETE'])
 def delete_state(state_id):
-    """Delete a state from the database given its ID"""
+    """sdg sr gtsrth ig"""
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
@@ -36,7 +36,7 @@ def delete_state(state_id):
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
-    """Create a new state with data sent in the request"""
+    """h sortiulsehtlui nkh"""
     data_dict = request.get_json(silent=True)
     if not data_dict:
         abort(400, description="Not a JSON")
@@ -49,15 +49,15 @@ def create_state():
 
 @app_views.route('/states/<state_id>', methods=['PUT'])
 def update_state(state_id):
-    """Update a state with data sent in the request"""
+    """Update"""
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
     data_dict = request.get_json(silent=True)
     if not data_dict:
         abort(400, description="Not a JSON")
-    for k, v in data_dict.items():
-        if k not in ("id", "created_at", "updated_at"):
-            setattr(state, k, v)
+    for key, value in data_dict.items():
+        if key not in ("id", "created_at", "updated_at"):
+            setattr(state, key, value)
     state.save()
     return jsonify(state.to_dict()), 200
